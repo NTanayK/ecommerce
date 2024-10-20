@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile {% endblock title %}
+
+{% block body %}
+<section id="portfolio" class="portfolio section">
+    <div class="container section-title" data-aos="fade-up">
+        <h1>Profile Page</h1>
+        <table class="table table-danger table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">Amount Paid</th>
+                    <th scope="col">Payment Status</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Delivery Status</th>
+                    <th scope="col">Delivered</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in items %}
+
+                <tr>
+                    <th scope="row">{{i.oid}}</th>
+                    <th>{{i.name}}</th>
+                    <th>{{i.items_json}}</th>
+                    <th>{{i.amount}}</th>
+                    <th>{{i.paymentstatus}}</th>
+                    <th>{{i.address1}}</th>
+                    <th>{{i.phone}}</th>
+                    
+                    
+                    {% for j in status  %}
+                    
+
+                    <td>{{j.update_desc}}</td>
+                    
+                    <td>{{j.delivered}}</td>
+                    
+                    {% if j.delivered %}
+                    <td><i class="fa-solid fa-circle-check"></i> Delivered</td>
+                    {% else %}
+                    <td><i class="fa-solid fa-truck"></i> Not Delivered</td>
+                    {% endif %}
+                    
+                    <td>{{j.timestamp}}</td>
+                    
+                    {% endfor %}
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock body %}

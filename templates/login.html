@@ -1,0 +1,74 @@
+{% extends "base.html" %} 
+
+{% block title %}Login{% endblock title %} 
+
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card bg-dark text-white">
+        <div class="card-header text-center">
+        
+        
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    
+        
+        
+        
+          <h2>Login</h2>
+          <div class="card-body">
+            <form method="post" action="/auth/login/">
+              {% csrf_token %}
+              <div class="form-group py-3">
+                <label for="email">Email ID</label>
+                <input
+                  type="email"
+                  class="form-control bg-secondary text-white"
+                  id="email"
+                  name="email"
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+              <div class="form-group py-3">
+                <label for="pass1">Password</label>
+                <input
+                  type="password"
+                  class="form-control bg-secondary text-white"
+                  id="pass1"
+                  name="pass1"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <br />
+              <button type="submit" class="btn btn-danger btn-block">
+                Login
+              </button>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <small
+              >New User ?
+              <a href="/auth/signup/" class="text-primary">Signup</a></small
+            > <br>
+            <small
+            >Forgot Password ?
+            <a href="/auth/request-reset-email/" class="text-primary">Reset</a></small
+            > 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

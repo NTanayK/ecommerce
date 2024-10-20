@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+
+{% block title %}request reset password {% endblock title %} 
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card bg-dark text-white">
+        <div class="card-header text-center">
+        
+        
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    
+        
+        
+        
+          <h3>Request a Reset Link</h3>
+          <div class="card-body">
+            <form method="post" action="/auth/request-reset-email/">
+              {% csrf_token %}
+              <div class="form-group py-3">
+                <label for="email">Email ID</label>
+                <input
+                  type="email"
+                  class="form-control bg-secondary text-white"
+                  id="email"
+                  name="email"
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+              <br />
+              <button type="submit" class="btn btn-danger btn-block">
+                Submit
+              </button>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <small
+              >
+              <a href="/" class="text-primary">Go Back</a></small
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
